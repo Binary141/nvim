@@ -3,12 +3,25 @@ require('lazy').setup({
     -- Automatically install lazy.nvim itself
     { 'folke/lazy.nvim' },
 
-    {'folke/tokyonight.nvim'},
+    { 'folke/tokyonight.nvim'},
+
+    {'romgrk/barbar.nvim',
+        dependencies = {
+            'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+            'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+        },
+        init = function() vim.g.barbar_auto_setup = false end,
+        opts = {
+            -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+            -- animation = true,
+            -- insert_at_start = true,
+            -- …etc.
+        },
+        version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    },
 
     -- Git integration
     { 'tpope/vim-fugitive' },
-
-    -- { 'fatih/vim-go' },
 
     {
         "L3MON4D3/LuaSnip",
@@ -23,26 +36,10 @@ require('lazy').setup({
         lazy = true,
         config = false,
     },
-    -- {
-    --     "ray-x/go.nvim",
-    --     dependencies = {  -- optional packages
-    --         "ray-x/guihua.lua",
-    --         "neovim/nvim-lspconfig",
-    --         "nvim-treesitter/nvim-treesitter",
-    --     },
-    --     config = function()
-    --         require("go").setup()
-    --     end,
-    --     event = {"CmdlineEnter"},
-    --     ft = {"go", 'gomod'},
-    --     build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-    -- },
-
 
     { "williamboman/mason.nvim" },
 
     -- LSP config
-    -- { 'neovim/nvim-lspconfig' },
     {
         'neovim/nvim-lspconfig',
         dependencies = {

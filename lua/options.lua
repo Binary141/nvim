@@ -40,19 +40,7 @@ vim.opt.isfname:append("@-@")      -- Allow "@" in file names
 
 vim.opt.updatetime = 50            -- Time (in ms) of no keypress before triggering CursorHold/autocommands
 
--- Set a simple statusline with mode and git branch
--- vim.opt.statusline = "%{mode()} %f %y %m %= %l,%c %p%%"
-
--- Check if Fugitive is installed and append the Git branch status if it is
--- local fugitive_status = ''
--- if vim.fn.exists('*fugitive#statusline') == 1 then
---   fugitive_status = '%{fugitive#statusline()}'
--- end
--- 
--- -- Set the statusline with the Git branch if Fugitive is installed
--- vim.opt.statusline = "%{mode()} %f %m %= %l,%c %p%% " .. fugitive_status
-
-
+-- TODO Use a status bar plugin
 -- Get the absolute path of the current file
 local file_path = vim.fn.expand('%:p')
 

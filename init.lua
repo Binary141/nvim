@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 -- Bootstrap lazy.nvim installation
 -- Needs to be present before using lazy
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
