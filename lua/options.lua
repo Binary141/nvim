@@ -3,11 +3,61 @@ vim.opt.clipboard = ""  -- Disable system clipboard integration
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'} -- completion behaviour
 vim.opt.mouse = 'v'                 -- allow the mouse to be used in visual mode
 
--- Tab
+-- Tab defaults
 vim.opt.tabstop = 4                 -- number of visual spaces per TAB
 vim.opt.softtabstop = 4             -- number of spacesin tab when editing
 vim.opt.shiftwidth = 4              -- insert 4 spaces on a tab
 vim.opt.expandtab = true            -- tabs are spaces, mainly because of python
+
+-- file type specific tab settings
+local ft_space_settings = {
+  -- 2 spaces
+  javascript = 2,
+  typescript = 2,
+  lua        = 2,
+  json       = 2,
+  yaml       = 2,
+  html       = 2,
+  css        = 2,
+  markdown   = 2,
+  toml       = 2,
+
+  -- 4 spaces
+  python     = 4,
+  c          = 4,
+  arduino    = 4,
+  cpp        = 4,
+  java       = 4,
+  rust       = 4,
+  sh         = 4,
+  make       = 4,
+  cmake      = 4,
+  vim        = 4,
+  php        = 4,
+
+  -- file types that use actual tabs
+  go         = "tab",
+  dockerfile = "tab",
+}
+
+for ft, setting in pairs(ft_space_settings) do
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = ft,
+    callback = function()
+      if setting == "tab" then
+        vim.bo.expandtab = false
+        vim.bo.tabstop = 4
+        vim.bo.shiftwidth = 4
+        vim.bo.softtabstop = 0
+      else
+        vim.bo.expandtab = true
+        vim.bo.tabstop = setting
+        vim.bo.shiftwidth = setting
+        vim.bo.softtabstop = setting
+      end
+    end,
+  })
+end
 
 -- UI config
 vim.opt.number = true               -- show absolute number
