@@ -21,11 +21,11 @@ local ft_space_settings = {
   css        = 2,
   markdown   = 2,
   toml       = 2,
+  arduino    = 2,
 
   -- 4 spaces
   python     = 4,
   c          = 4,
-  arduino    = 4,
   cpp        = 4,
   java       = 4,
   rust       = 4,
