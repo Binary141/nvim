@@ -34,3 +34,24 @@ vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+vim.keymap.set('n', '<leader>dl', function()
+  vim.diagnostic.setqflist({ open = true })
+
+  vim.wo.wrap = true    -- Enable line wrapping
+end)
+
+-- Keybinding to show the diagnostic message for the current line
+vim.keymap.set('n', '<leader>de', function()
+  local current_line = vim.api.nvim_win_get_cursor(0)[1]  -- Get the current line number
+  local diagnostics = vim.diagnostic.get(0, {lnum = current_line - 1})  -- Get diagnostics for the current line (0-indexed)
+
+  if #diagnostics > 0 then
+    -- If there are diagnostics, show them
+    vim.lsp.diagnostic.show(diagnostics, 0)
+  else
+    -- No diagnostics for the line, notify the user
+    print("No diagnostics for this line")
+  end
+end)
+

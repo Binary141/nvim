@@ -13,6 +13,7 @@ vim.opt.expandtab = true            -- tabs are spaces, mainly because of python
 local ft_space_settings = {
   -- 2 spaces
   javascript = 2,
+  vue = 2,
   typescript = 2,
   lua        = 2,
   json       = 2,
@@ -22,11 +23,11 @@ local ft_space_settings = {
   markdown   = 2,
   toml       = 2,
   arduino    = 2,
+  c          = 2,
+  cpp        = 2,
 
   -- 4 spaces
   python     = 4,
-  c          = 4,
-  cpp        = 4,
   java       = 4,
   rust       = 4,
   sh         = 4,
